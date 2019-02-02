@@ -27,13 +27,20 @@ Execute these commands to run the script. It will recursively process the direct
 
 		$ cat myproject/lib/pom.xml
 		<!-- jakarta-oro-2.0.8.jar -->
-		<!-- Found info on search.maven.org for jakarta-oro-2.0.8.jar --> <dependency> <groupId>oro</groupId> <artifactId>oro</artifactId> <version>2.0.8</version> </dependency>
+		<!-- Found info on search.maven.org for jakarta-oro-2.0.8.jar -->
+		 <dependency>
+		 <groupId>oro</groupId>
+		 <artifactId>oro</artifactId>
+		 <version>2.0.8</version>
+		 </dependency>
+		 
 		<!-- log4j-over-slf4j-1.7.12.jar -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
 			<version>1.7.12</version>
 		</dependency>
+
 		<!-- mail.jar -->
 		<!-- TODO find the dep info for jar mail.jar
 		Manifest-Version: 1.0
@@ -45,7 +52,7 @@ Execute these commands to run the script. It will recursively process the direct
 		Implementation-Vendor-Id: com.sun
 		Implementation-Vendor: Sun Microsystems, Inc.
 		Specification-Vendor: Sun Microsystems, Inc.
-		SCCS-ID: @(#)javamail.mf        1.5 02/03/14
+		SCCS-ID: @(#)javamail.mf	1.5 02/03/14
 
 		Name: javax/mail/search/SearchTerm.class
 		SHA1-Digest: bJeLilaOUG6Et+Aio7NaAHhvZks=
@@ -55,8 +62,10 @@ Execute these commands to run the script. It will recursively process the direct
 		<dependency>
 			<groupId>mail.jar</groupId>
 			<artifactId>mail.jar</artifactId>
-		</version>on>1.3.3_01
+			<version>1.3.3_01</version>
 		</dependency>
+
+
 
 
 I tested this on cygwin with bash. It should work on linux too.
