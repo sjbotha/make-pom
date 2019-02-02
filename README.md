@@ -80,3 +80,7 @@ I tested this on cygwin with bash. It should work on linux too.
 
 I think these dependencies were included in my cygwin by default.
 
+## TODO
+
+Can probably enhance it to search additional repositories by checksum
+
