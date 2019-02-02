@@ -1,9 +1,12 @@
 
 # make-pom
 
-This bash script creates the dependencies part of a pom.xml file from a collection of jars. Useful if you are converting a project from ant to maven.
+This bash script creates the dependencies part of a pom.xml file from a collection of jars. For each jar we have to find the groupId, artifactId and version. This script is useful when converting a project from ant to maven.
 
-It first looks inside the jar for META-INF/maven/, then it tries to search for the jar by SHA1 checksum on search.maven.org, then finally it puts a comment in pom.xml with information about the jar manifest to help you in locating the dependency yourself. Of course you may not find the jar anywhere and then you'll have to host it in your own private maven repository.
+To discover this information the script does the following:
+1. It first looks inside the jar for META-INF/maven/
+2. then it tries to search for the jar by SHA1 checksum on search.maven.org
+3. then finally it puts a comment in pom.xml with information about the jar manifest to help you in locating the dependency yourself. Of course you may not find the jar anywhere and then you'll have to host it in your own private maven repository.
 
 
 ## Usage
