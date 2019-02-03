@@ -23,6 +23,7 @@ if [ "$VERSION" != "" ]; then
 	echo "    <artifactId>$ART</artifactId>" >> pom.xml
 	echo "    <version>$VERSION</version>" >> pom.xml
 	echo "</dependency>" >> pom.xml
+	echo "" >> pom.xml
 else
 	SHA1=`sha1sum $file`
 	#LOOKUPINFO=`lookup-jar.py $file $SHA1`
@@ -41,13 +42,14 @@ searchurl = 'http://search.maven.org/solrsearch/select?q=1:%22'+sha+'%22&rows=20
 page = urllib2.urlopen(searchurl)
 data = json.loads("".join(page.readlines()))
 if data["response"] and data["response"]["numFound"] == 1:
-	print "<!-- Found info on search.maven.org for "+jar+" -->"+os.linesep
+	print "<!-- Found info on search.maven.org for "+jar+" -->\r\n"
 	jarinfo = data["response"]["docs"][0]
-	print '<dependency>'+os.linesep
-	print '    <groupId>'+jarinfo["g"]+'</groupId>'+os.linesep
-	print '    <artifactId>'+jarinfo["a"]+'</artifactId>'+os.linesep
-	print '    <version>'+jarinfo["v"]+'</version>'+os.linesep
-	print '</dependency>'+os.linesep
+	print '<dependency>\r\n'
+	print '    <groupId>'+jarinfo["g"]+'</groupId>\r\n'
+	print '    <artifactId>'+jarinfo["a"]+'</artifactId>\r\n'
+	print '    <version>'+jarinfo["v"]+'</version>\r\n'
+	print '</dependency>\r\n'
+	print '\r\n'
 
 END
 )
@@ -59,7 +61,7 @@ END
 		# did not find on search.maven.org so add info from MANIFEST.MF
 		echo "$file ***** dep info not found *****"
 		MFHEAD=`unzip -p - $file META-INF/MANIFEST.MF | head -n 15`
-		VERSION=`unzip -p - $file META-INF/MANIFEST.MF | head -n 15 | grep "Implementation-Version" | cut -d ':' -f 2 | sed -e 's/[[:space:]]*//'`
+		VERSION=`unzip -p - $file META-INF/MANIFEST.MF | head -n 15 | grep "Implementation-Version" | cut -d ':' -f 2 | sed -e 's/[[:space:]]*//' | tr -d "\r"`
 		echo "<!-- TODO find the dep info for jar $file" >> pom.xml
 		echo "$MFHEAD" >> pom.xml
 		echo "-->" >> pom.xml
@@ -68,6 +70,7 @@ END
 		echo "    <artifactId>$file</artifactId>" >> pom.xml
 		echo "    <version>$VERSION</version>" >> pom.xml
 		echo "</dependency>" >> pom.xml
+		echo "" >> pom.xml
 	fi
 fi
 
